@@ -20,6 +20,7 @@ matrix:
         update: true
 
 install:
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get -y update && sudo apt-get install -y cmake clang; fi
   - git clone --depth 1 https://github.com/catchorg/Catch2.git && cd Catch2 && cmake -Bbuild -H. -DBUILD_TESTING=OFF && sudo cmake --build build/ --target install
   - cd $TRAVIS_BUILD_DIR && mkdir build && cd build && cmake .. && cmake --build .
 
