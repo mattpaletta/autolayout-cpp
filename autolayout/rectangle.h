@@ -5,11 +5,11 @@
 
 class Rectangle {
 public:
-	Rectangle();
-	~Rectangle();
-	
-	Size size;
+	Rectangle(Point p = Point::zero(), Size s = Size::zero()) : point(p), size(s) {};
+	~Rectangle() = default;
+
 	Point point;
+	Size size;
 };
 
 #endif
