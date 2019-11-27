@@ -1,0 +1,29 @@
+language: cpp
+sudo: required
+
+matrix:
+  include:
+    - os: osx
+      osx_image: xcode10.1
+      env:
+        - MATRIX_EVAL="brew install cmake
+    - os: linux
+      addons:
+      apt:
+        sources:
+          - ubuntu-toolchain-r-test
+        packages:
+          - g++
+          - gcc
+          - libboost-dev
+        update: true
+
+install:
+  - mkdir build && cd build && cmake .. && cmake --build .
+
+script:
+  - cd build && ./test_autolayout
+notifications:
+  email:
+    on_failure: change
+    on_success: never
